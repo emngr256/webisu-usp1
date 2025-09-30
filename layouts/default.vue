@@ -24,27 +24,12 @@
     </footer>
 </template>
 
-<script setup lang="ts">
-import { useHead } from "#app";
-import { ref } from "vue";
-useHead({
-    script: [
-        {
-            async: true,
-            src: 'https://www.googletagmanager.com/gtag/js?id=G-TBV7H87J68',
-        },
-        {
-            innerHTML:`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-TBV7H87J68');            
-            ` ,
-            type: 'text/javascript',
-        },
-    ],
-    _dangerouslyDisableSanitizersByTagID: {
-        gtag: ['innerHTML'],
-    },
-})
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F049P49CM1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-F049P49CM1');
 </script>
