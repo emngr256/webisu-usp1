@@ -23,13 +23,3 @@
         <a href = "https://facebook.com/"><img src="assets/images/facebook.png" class="w-16 h-16 bg-transparent"></img></a>
     </footer>
 </template>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-F049P49CM1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-F049P49CM1');
-</script>
