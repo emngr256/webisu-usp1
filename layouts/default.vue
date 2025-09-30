@@ -26,26 +26,23 @@
 
 <script setup lang="ts">
 import { useHead } from "#app";
-import { ref } from "vue";
-useHead({
-    script: [
-        {
-            async: true,
-            src: 'https://www.googletagmanager.com/gtag/js?id=G-F049P49CM1',
-        },
-        {
-            innerHTML:`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-F049P49CM1');            
-            ` ,
-            type: 'text/javascript',
-        },
-    ],
-    _dangerouslyDisableSanitizersByTagID: {
-        gtag: ['innerHTML'],
-    },
-})
-</script>
 
+useHead({
+  script: [
+    {
+      async: true,
+      src: "https://www.googletagmanager.com/gtag/js?id=G-9BFTYEBPN7",
+    },
+    {
+      id: "gtag",
+      type: "text/javascript",
+      children: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-9BFTYEBPN7');
+      `,
+    },
+  ],
+});
+</script>
