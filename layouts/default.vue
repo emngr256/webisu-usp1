@@ -26,23 +26,33 @@
 
 <script setup lang="ts">
 import { useHead } from "#app";
+import { ref } from "vue";
 
 useHead({
-  script: [
-    {
-      async: true,
-      src: "https://www.googletagmanager.com/gtag/js?id=G-9BFTYEBPN7",
+    script: [
+        {
+            async: true,
+            src: 'https://www.googletagmanager.com/gtag/js?id=G-9BFTYEBPN7',
+        },
+        {
+            innerHTML:`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-9BFTYEBPN7');            
+            `,
+            type: 'text/javascript',
+        },
+    ],
+    _dangerouslyDisableSanitizersByTagID: {
+        gtag: ['innerHTML'],
     },
-    {
-      id: "gtag",
-      type: "text/javascript",
-      children: `
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-9BFTYEBPN7');
-      `,
-    },
-  ],
-});
+})
+
+// const burger = ref<boolean>(false)
+// const submenu = ref<boolean>(false)
+
+// const switch_burger = ()=> (burger.value = !burger.value)
+// const switch_submenu = ()=> (submenu.value = !submenu.value)
+
 </script>
