@@ -25,8 +25,6 @@
 </template>
 
 <script setup lang="ts">
-import { useHead } from "#app";
-
 useHead({
   script: [
     {
@@ -34,19 +32,15 @@ useHead({
       src: 'https://www.googletagmanager.com/gtag/js?id=G-9BFTYEBPN7',
     },
     {
-      innerHTML: `window.dataLayer = window.dataLayer || [];`,
+      innerHTML: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-9BFTYEBPN7');
+      `,
       type: 'text/javascript',
+      id: 'gtag-init'
     },
   ],
-})
-
-// Инициализация после загрузки компонента
-onMounted(() => {
-  function gtag(...args: any[]) {
-    window.dataLayer?.push(args);
-  }
-  
-  gtag('js', new Date());
-  gtag('config', 'G-9BFTYEBPN7');
 })
 </script>
