@@ -1,42 +1,52 @@
 <template>
-    <header class="flex w-full items-center justify-between bg-gray-900 shadow-sm py-2 sticky top-0 z-50 text-gray-500">
+    <header class="flex w-full items-center justify-between bg-gray-900 shadow-sm py-2 top-0 z-50 text-gray-500">
         <div class = "basis-1/4 max-sm:basis-1/3 max-sm:px-4 items-center justify-start px-10">
             <img src="/assets/images/logo256.png" alt="Logo" class="h-12 w-12">
         </div>
         <div class="basis-1/4 max-sm:hidden">
         </div>
-        <nav :class="{'basis-1/2 flex flex-row items-center justify-end px-8 gap-4': !burger || burger,
-         'max-sm:basis-auto max-sm:absolute max-sm:top-full max-sm:w-full max-sm:justify-center max-sm:flex-col max-sm:gap-0 max-sm:bg-white max-sm:px-0': burger,'max-sm:hidden':!burger}">
+        
+        <!-- ИЗМЕНЕНИЕ: Добавлен z-40 и изменена структура классов для навигации -->
+        <nav :class="{'basis-1/2 flex flex-row items-center justify-end px-8 gap-4 z-40': !burger || burger,
+         'max-sm:basis-auto max-sm:fixed max-sm:top-12 max-sm:left-0 max-sm:right-0 max-sm:w-full max-sm:justify-center max-sm:flex-col max-sm:gap-0 max-sm:bg-white max-sm:px-0 max-sm:z-50 max-sm:shadow-lg': burger,'max-sm:hidden':!burger}">
       <NuxtLink to="/" class="my-auto p-2 hover:bg-gray-500 hover:text-white max-sm:w-full max-sm:border-b-2 max-sm:border-black max-sm:text-center">Home</NuxtLink>
-      <div class="my-auto p-2 hover:bg-gray-500 hover:text-white max-sm:w-full max-sm:text-center max-sm:px-0 max-sm:pb-0" @click = "switch_submenu">Labs
-        <div class="flex flex-col absolute bg-white text-black w-56 text-center max-sm:relative max-sm:w-full max-sm:bg-red-100" v-show = "submenu">
-          <NuxtLink to="/lab3" class="my-auto p-2 border-b-2 border-black hover:bg-gray-500 hover:text-white max-sm:w-full max-sm:border-t-2 max-sm:text-center">Lab3</NuxtLink>
-          <NuxtLink to="/lab4" class="my-auto p-2 border-b-2 border-black hover:bg-gray-500 hover:text-white max-sm:w-full max-sm:text-center">Lab4</NuxtLink>
-          <NuxtLink to="/lab5" class="my-auto p-2 border-b-2 border-black hover:bg-gray-500 hover:text-white max-sm:w-full max-sm:text-center">Lab5</NuxtLink>
-          <NuxtLink to="/lab6" class="my-auto p-2 border-b-2 border-black hover:bg-gray-500 hover:text-white max-sm:w-full max-sm:border-black max-sm:text-center">Lab6</NuxtLink>
+      
+      <!-- ИЗМЕНЕНИЕ: Добавлен relative и z-50 для контейнера Labs -->
+      <div role="button" class="my-auto p-2 select-none hover:bg-gray-500  hover:text-white max-sm:w-full max-sm:text-center max-sm:px-0 max-sm:pb-0 relative z-50" @click = "switch_submenu">Labs
+        
+        <!-- ИЗМЕНЕНИЕ: Добавлен высокий z-index (z-50) и shadow для выпадающего меню -->
+        <div class="flex border-2 border-white flex-col absolute bg-gray-900 mt-5 text-white w-56 text-center max-sm:relative max-sm:w-full max-sm:bg-red-100 shadow-lg z-50" v-show = "submenu">
+          <NuxtLink to="/lab3" class="my-auto p-2 border-b-2 border-white hover:bg-gray-500 hover:text-white max-sm:w-full max-sm:border-t-2 max-sm:text-center">Lab3</NuxtLink>
+          <NuxtLink to="/lab4" class="my-auto p-2 border-b-2 border-white hover:bg-gray-500 hover:text-white max-sm:w-full max-sm:text-center">Lab4</NuxtLink>
+          <NuxtLink to="/lab5" class="my-auto p-2 border-b-2 border-white hover:bg-gray-500 hover:text-white max-sm:w-full max-sm:text-center">Lab5</NuxtLink>
+          <NuxtLink to="/lab6" class="my-auto p-2 border-b-2 border-white hover:bg-gray-500 hover:text-white max-sm:w-full max-sm:border-black max-sm:text-center">Lab6</NuxtLink>
         </div>
       </div>
+      
       <NuxtLink to="/login" :class="{'my-auto p-2 hover:bg-gray-500 hover:text-white max-sm:w-full max-sm:border-b-2 max-sm:border-black max-sm:text-center': submenu,
       'my-auto p-2 hover:bg-gray-500 hover:text-white max-sm:w-full max-sm:border-b-2 max-sm:border-t-2 max-sm:border-black max-sm:text-center': !submenu}">LogIn</NuxtLink>
       <NuxtLink to="/logout" class="my-auto p-2 hover:bg-gray-500 hover:text-white max-sm:w-full max-sm:border-b-2 max-sm:border-black max-sm:text-center">LogOut</NuxtLink>
     </nav>
-    <div v-if ="!burger" @click ="switch_burger" class = "max-sm:flex max-sm:flex-col max-sm:mr-8 max-sm:justify-between max-sm:items-center max-sm:w-8 max-sm:h-6">
+    
+    <!-- ИЗМЕНЕНИЕ: Добавлен z-40 для бургер-кнопки -->
+    <div v-if ="!burger" @click ="switch_burger" class = "max-sm:flex max-sm:flex-col max-sm:mr-8 max-sm:justify-between max-sm:items-center max-sm:w-8 max-sm:h-6 z-40">
       <span class="h-[3px] w-full bg-blue-950"></span>
       <span class="h-[3px] w-full bg-blue-950"></span>
       <span class="h-[3px] w-full bg-blue-950"></span>
     </div>
-    <div v-else class = "max-sm:flex max-sm:flex-col max-sm:mr-8 max-sm:justify-between max-sm:items-center max-sm:w-8 max-sm:h-6" @click="switch_burger">
+    
+    <!-- ИЗМЕНЕНИЕ: Добавлен z-40 для бургер-кнопки (крестик) -->
+    <div v-else class = "max-sm:flex max-sm:flex-col max-sm:mr-8 max-sm:justify-between max-sm:items-center max-sm:w-8 max-sm:h-6 z-40" @click="switch_burger">
       <span class="h-[3px] w-full bg-blue-950 rotate-45 relative top-[9px]"></span>
       <span class="h-[3px] w-full bg-blue-950 opacity-0"></span>
       <span class="h-[3px] w-full bg-blue-950 relative bottom-3 rotate-[-45deg]"></span>
     </div>
     </Header>
 
-
-  <main class="p-5 flex-row w-full h-screen relative overflow-hidden">
-  <div 
+  <main class="p-5 flex-row w-full min-h-screen relative overflow-hidden">
+  <!-- <div 
     class="absolute inset-0 -z-10 bg-[url('/assets/images/bg1.png')] bg-cover bg-center [filter:blur(10px)]">
-  </div>
+  </div> -->
   <slot />
 </main>
 
